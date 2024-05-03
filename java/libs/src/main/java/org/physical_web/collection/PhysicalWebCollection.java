@@ -325,7 +325,7 @@ public class PhysicalWebCollection {
     for (PwPair pwPair : allPairs) {
       PwsResult pwsResult = pwPair.getPwsResult();
       String groupId = pwsResult.getGroupId();
-      if (groupId == null || groupId.equals("")) {
+      if (groupId == null || "".equals(groupId)) {
         // Pairs without a group are always included
         filteredPairs.add(pwPair);
       } else {

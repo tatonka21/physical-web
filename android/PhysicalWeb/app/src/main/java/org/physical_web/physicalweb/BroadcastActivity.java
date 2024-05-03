@@ -79,7 +79,7 @@ public class BroadcastActivity extends Activity {
         Intent intent = getIntent();
         String type = intent.getType();
         String text = intent.getStringExtra(Intent.EXTRA_TEXT);
-        if (type.equals("text/plain")) {
+        if ("text/plain".equals(type)) {
             if (Build.VERSION.SDK_INT < 21) {
                 Toast.makeText(this, getString(R.string.ble_os_error),
                     Toast.LENGTH_LONG).show();

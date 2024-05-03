@@ -49,10 +49,10 @@ public class OfflineTransportConnectionActivity extends Activity {
     String deviceAddress = intent.getStringExtra(EXTRA_DEVICE_ADDRESS);
     int devicePort = intent.getIntExtra(EXTRA_DEVICE_PORT, -1);
     String title = intent.getStringExtra(EXTRA_PAGE_TITLE);
-    if (connectionType.equals(EXTRA_FAT_BEACON_CONNECTION) && deviceAddress != null &&
+    if (EXTRA_FAT_BEACON_CONNECTION.equals(connectionType) && deviceAddress != null &&
         title != null) {
       (new BluetoothSite(this)).connect(deviceAddress, title, listener);
-    } else if (connectionType.equals(EXTRA_WIFI_DIRECT_CONNECTION) && deviceAddress != null &&
+    } else if (EXTRA_WIFI_DIRECT_CONNECTION.equals(connectionType) && deviceAddress != null &&
         devicePort != -1 && title != null) {
       UrlDevice device = new Utils.UrlDeviceBuilder("id", "url")
           .setWifiAddress(deviceAddress)

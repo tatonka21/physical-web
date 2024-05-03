@@ -334,7 +334,7 @@ class Utils {
    */
   public static WifiDirectInfo parseWifiDirectName(String name) {
     String split[] = name.split("-");
-    if (split.length < 3 || !split[0].equals("PW")
+    if (split.length < 3 || !"PW".equals(split[0])
         || !split[split.length - 1].matches("\\d+")) {
       return null;
     }
@@ -776,9 +776,9 @@ class Utils {
    */
   public static boolean isResolvableDevice(UrlDevice urlDevice) {
     String type = urlDevice.optExtraString(TYPE_KEY, "");
-    return type.equals(BLE_DEVICE_TYPE)
-        || type.equals(SSDP_DEVICE_TYPE)
-        || type.equals(MDNS_PUBLIC_DEVICE_TYPE);
+    return BLE_DEVICE_TYPE.equals(type)
+        || SSDP_DEVICE_TYPE.equals(type)
+        || MDNS_PUBLIC_DEVICE_TYPE.equals(type);
   }
 
   /**
@@ -945,7 +945,7 @@ class Utils {
    */
   public static String getGroupId(PwsResult pwsResult) {
     // The PWS does not always give us a group id yet.
-    if (pwsResult.getGroupId() == null || pwsResult.getGroupId().equals("")) {
+    if (pwsResult.getGroupId() == null || "".equals(pwsResult.getGroupId())) {
       try {
         return new URI(pwsResult.getSiteUrl()).getHost() + pwsResult.getTitle();
       } catch (URISyntaxException e) {
