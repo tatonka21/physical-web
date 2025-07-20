@@ -15,6 +15,7 @@
  */
 package org.physical_web.collection;
 
+import io.github.pixee.security.BoundedLineReader;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -74,7 +75,7 @@ class JsonObjectRequest extends Request<JSONObject> {
     StringBuilder stringBuilder = new StringBuilder();
     BufferedReader in = new BufferedReader(new InputStreamReader(is, "UTF-8"));
     String line;
-    while ((line = in.readLine()) != null) {
+    while ((line = BoundedLineReader.readLine(in, 5_000_000)) != null) {
         stringBuilder.append(line);
     }
     JSONObject jsonObject;
