@@ -15,6 +15,8 @@
  */
 package org.physical_web.collection;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,7 +40,7 @@ abstract class Request<T> extends Thread {
    * @throws MalformedURLException on invalid url
    */
   public Request(String url, RequestCallback<T> callback) throws MalformedURLException {
-    mUrl = new URL(url);
+    mUrl = Urls.create(url, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     mCallback = callback;
   }
 
